@@ -1,6 +1,6 @@
 import mongoose  from 'mongoose';
 
-const Connection = async (username = 'adiadmin', password = 'codingforinterview') => {
+const Connection = async (username, password) => {
     const URL = `mongodb+srv://${username}:${password}@text-editor.2kpdbhw.mongodb.net/?retryWrites=true&w=majority`;
 
     try {

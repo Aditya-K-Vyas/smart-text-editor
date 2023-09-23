@@ -2,8 +2,10 @@ import {Server } from 'socket.io';
 import Connection from './database/db.js';
 import { getDocument,updateDocument } from './controller/document-controller.js';
 
+import  dotenv from 'dotenv'
 const PORT = 9000;
 
+dotenv.config()
 const io = new Server(PORT,{
     cors:{
         origin:'http://localhost:3000',
@@ -11,7 +13,13 @@ const io = new Server(PORT,{
     }
 });
 
-Connection();
+const user = process.env.DB_USERNAME;
+const password = process.env.DB_PASSWORD;
+
+
+Connection(user,password);
+// Connection();
+
 
 io.on('connection', socket => {
     socket.on('get-document',async documentId=>{
